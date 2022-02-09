@@ -1,0 +1,41 @@
+name: publish-php-images
+on:
+  schedule:
+    - cron: "0 0 * * 0"
+  workflow_dispatch:
+jobs:
+  build_and_push_base_images:
+    name: Build app base images
+    strategy:
+      matrix:
+        app:
+          - node-red
+    runs-on: ubuntu-latest
+    permissions:
+      packages: write
+      contents: read
+    steps:
+
+      - name: check out the repo
+        uses: actions/checkout@v2
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: otel-php-bot
+          password: ${{ secrets.BOT_TOKEN }}
+
+      - name: Build and push ${{ matrix.php-version }} to ghcr.io
+        uses: docker/build-push-action@v2
+        with:
+          push: true
+          file: ${{ matrix.app }}/Dockerfile
+          build-args: |
+              PHP_VERSION=${{ matrix.php-version }}
+              PHP_EXTENSION=${{ matrix.php-sapi }}
+          tags: |
+            ghcr.io/${{ github.repository_owner }}/app/${{ matrix.app }}:latest
