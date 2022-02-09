@@ -33,6 +33,8 @@ jobs:
           context: "{{defaultContext}}:${{ matrix.app }}"
           push: true
           file: Dockerfile
+          build-args: |
+              IMAGE_SOURCE=https://github.com/$GITHUB_REPOSITORY
           tags: |
             ghcr.io/${{ github.repository_owner }}/app/${{ matrix.app }}:latest
           secrets: |
