@@ -5,8 +5,6 @@ ARG PHP_EXT_DIR="/usr/local/lib/php/extensions/"
 ARG PHP_CONF_DIR="/usr/local/etc/php/conf.d/"
 ARG IMAGE_SOURCE=https://github.com/opentelemetry-php/app-base-img
 
-LABEL org.opencontainers.image.source=${IMAGE_SOURCE}
-
 FROM ${BASE_IMAGE_REPO}/ext-ast:${PHP_VERSION} AS ext-ast
 FROM ${BASE_IMAGE_REPO}/ext-zip:${PHP_VERSION} AS ext-zip
 FROM ${BASE_IMAGE_REPO}/ext-pcntl:${PHP_VERSION} AS ext-pcntl
@@ -18,6 +16,8 @@ FROM ${BASE_IMAGE_REPO}/ext-opcache:${PHP_VERSION} AS ext-opcache
 FROM ${BASE_IMAGE_REPO}/ext-zmq:${PHP_VERSION} AS ext-zmq
 
 FROM ${BASE_IMAGE_REPO}/cli:${PHP_VERSION}
+
+LABEL org.opencontainers.image.source=${IMAGE_SOURCE}
 
 # AST
 COPY --from="ext-ast" ${PHP_EXT_DIR} ${PHP_EXT_DIR}
