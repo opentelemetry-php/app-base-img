@@ -1,6 +1,6 @@
 FROM nodered/node-red
 
-ARG IMAGE_SOURCE=https://github.com/otel-php/app-base-img
+ARG IMAGE_SOURCE=https://github.com/opentelemetry-php/app-base-img
 
 LABEL org.opencontainers.image.source=${IMAGE_SOURCE}
 
