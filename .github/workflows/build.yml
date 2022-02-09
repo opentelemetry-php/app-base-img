@@ -29,7 +29,7 @@ jobs:
           username: ${{ secrets.BOT_USER }}
           password: ${{ secrets.BOT_TOKEN }}
 
-      - name: Build and push ${{ matrix.php-version }} to ghcr.io
+      - name: Build and push ${{ matrix.app }} to ghcr.io
         uses: docker/build-push-action@v2
         with:
           context: "{{defaultContext}}:${{ matrix.app }}"
