@@ -1,5 +1,5 @@
-ARG PHP_VERSION=8.1
-ARG PHP_MINOR_VERSION=8.1.1
+ARG PHP_VERSION="8.1"
+ARG PHP_MINOR_VERSION="8.1.1"
 ARG BASE_IMAGE_REPO="ghcr.io/opentelemetry-php/php"
 ARG PHP_EXT_DIR="/usr/local/lib/php/extensions/"
 ARG PHP_CONF_DIR="/usr/local/etc/php/conf.d/"
@@ -14,7 +14,7 @@ FROM ${BASE_IMAGE_REPO}/ext-apcu:${PHP_VERSION} AS ext-apcu
 FROM ${BASE_IMAGE_REPO}/ext-opcache:${PHP_VERSION} AS ext-opcache
 FROM ${BASE_IMAGE_REPO}/ext-zmq:${PHP_VERSION} AS ext-zmq
 
-FROM ${BASE_IMAGE_REPO}/cli:${PHP_MINOR_VERSION}
+FROM ${BASE_IMAGE_REPO}/cli:${PHP_VERSION}
 
 # AST
 COPY --from="ext-ast" ${PHP_EXT_DIR} ${PHP_EXT_DIR}
