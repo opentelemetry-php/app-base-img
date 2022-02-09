@@ -4,17 +4,17 @@ ARG BASE_IMAGE_REPO="ghcr.io/opentelemetry-php/php"
 ARG PHP_EXT_DIR="/usr/local/lib/php/extensions/"
 ARG PHP_CONF_DIR="/usr/local/etc/php/conf.d/"
 
-FROM ${BASE_IMAGE_REPO}/ext-ast:8.1 AS ext-ast
-FROM ${BASE_IMAGE_REPO}/ext-zip:8.1 AS ext-zip
-FROM ${BASE_IMAGE_REPO}/ext-pcntl:8.1 AS ext-pcntl
-FROM ${BASE_IMAGE_REPO}/ext-grpc:8.1 AS ext-grpc
-FROM ${BASE_IMAGE_REPO}/ext-protobuf:8.1 AS ext-protobuf
-FROM ${BASE_IMAGE_REPO}/ext-mbstring:8.1 AS ext-mbstring
-FROM ${BASE_IMAGE_REPO}/ext-apcu:8.1 AS ext-apcu
-FROM ${BASE_IMAGE_REPO}/ext-opcache:8.1 AS ext-opcache
-FROM ${BASE_IMAGE_REPO}/ext-zmq:8.1 AS ext-zmq
+FROM ${BASE_IMAGE_REPO}/ext-ast:${PHP_VERSION} AS ext-ast
+FROM ${BASE_IMAGE_REPO}/ext-zip:${PHP_VERSION} AS ext-zip
+FROM ${BASE_IMAGE_REPO}/ext-pcntl:${PHP_VERSION} AS ext-pcntl
+FROM ${BASE_IMAGE_REPO}/ext-grpc:${PHP_VERSION} AS ext-grpc
+FROM ${BASE_IMAGE_REPO}/ext-protobuf:${PHP_VERSION} AS ext-protobuf
+FROM ${BASE_IMAGE_REPO}/ext-mbstring:${PHP_VERSION} AS ext-mbstring
+FROM ${BASE_IMAGE_REPO}/ext-apcu:${PHP_VERSION} AS ext-apcu
+FROM ${BASE_IMAGE_REPO}/ext-opcache:${PHP_VERSION} AS ext-opcache
+FROM ${BASE_IMAGE_REPO}/ext-zmq:${PHP_VERSION} AS ext-zmq
 
-FROM ${BASE_IMAGE_REPO}/cli:8.1
+FROM ${BASE_IMAGE_REPO}/cli:${PHP_VERSION}
 
 # AST
 COPY --from="ext-ast" ${PHP_EXT_DIR} ${PHP_EXT_DIR}
@@ -71,5 +71,4 @@ RUN chown php /usr/local/bin/run.sh && chown php /usr/local/bin/wait-for-tempora
 
 # Copy application codebase
 WORKDIR /var/app
-
 

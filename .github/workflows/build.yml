@@ -31,12 +31,10 @@ jobs:
           password: ${{ secrets.BOT_TOKEN }}
 
       - name: Build and push ${{ matrix.php-version }} to ghcr.io
-        uses: docker/build-push-action@v2
+          uses: docker/build-push-action@v2
         with:
+          context: "{{defaultContext}}:${{ matrix.app }}"
           push: true
           file: ${{ matrix.app }}/Dockerfile
-          build-args: |
-              PHP_VERSION=${{ matrix.php-version }}
-              PHP_EXTENSION=${{ matrix.php-sapi }}
           tags: |
             ghcr.io/${{ github.repository_owner }}/app/${{ matrix.app }}:latest
