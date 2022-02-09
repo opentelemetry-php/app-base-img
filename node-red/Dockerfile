@@ -8,3 +8,6 @@ RUN npm install --save @node-red-contrib-themes/theme-collection
 RUN npm install --save @opentelemetry/api
 RUN npm install --save @opentelemetry/sdk-node
 RUN npm install --save @opentelemetry/auto-instrumentations-node
+
+# Add default settings file
+COPY build/settings.js /data/settings.js
