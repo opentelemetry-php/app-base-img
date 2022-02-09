@@ -10,6 +10,7 @@ jobs:
       matrix:
         app:
           - node-red
+          - temporal-php
     runs-on: ubuntu-latest
     permissions:
       packages: write
