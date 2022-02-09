@@ -71,5 +71,5 @@ RUN chown php /usr/local/bin/run.sh && chown php /usr/local/bin/wait-for-tempora
 
 # Copy application codebase
 WORKDIR /var/app
-COPY app/ /var/app
+
 
