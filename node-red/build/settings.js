@@ -426,7 +426,7 @@ module.exports = {
      *    global.get("os")
      */
     functionGlobalContext: {
-        // os:require('os'),
+         os:require('os'),
     },
 
     /** The maximum number of messages nodes will buffer internally as part of their
