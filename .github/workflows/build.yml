@@ -31,7 +31,7 @@ jobs:
           password: ${{ secrets.BOT_TOKEN }}
 
       - name: Build and push ${{ matrix.php-version }} to ghcr.io
-          uses: docker/build-push-action@v2
+        uses: docker/build-push-action@v2
         with:
           context: "{{defaultContext}}:${{ matrix.app }}"
           push: true
