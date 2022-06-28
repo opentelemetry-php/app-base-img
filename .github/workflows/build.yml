@@ -13,6 +13,7 @@ jobs:
         app:
           - node-red
           - temporal-php
+          - roadrunner
     runs-on: ubuntu-latest
     permissions:
       packages: write
